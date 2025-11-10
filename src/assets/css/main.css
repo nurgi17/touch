@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  overflow: hidden;
+}
+
+#app {
+  width: 100vw;
+  height: 100vh;
+}
+
+@keyframes flash {
+
+  0%,
+  100% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.flash-animation {
+  animation: flash 0.5s ease-in-out;
+}
+
+@keyframes fall {
+  from {
+    transform: translateY(-100px);
+  }
+
+  to {
+    transform: translateY(calc(100vh + 100px));
+  }
+}
+
+.falling {
+  animation: fall linear;
+}
+
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+.bounce-animation {
+  animation: bounce 0.3s ease-in-out;
+}
