@@ -1,10 +1,10 @@
 <template>
   <div
-    :class="['falling-object', config.color, { caught: object.caught }]"
+    :class="['falling-object', { caught: object.caught }]"
     :style="objectStyle"
     @click="handleClick"
   >
-    <span class="emoji">{{ config.emoji }}</span>
+    <img :src="config.emoji" alt="" />
     <div v-if="showPoints" class="points-popup">
       {{ object.points > 0 ? '+' : '' }}{{ object.points }}
     </div>
@@ -46,14 +46,12 @@ function handleClick() {
 .falling-object {
   position: absolute;
   top: -100px;
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
+  width: 150px;
+  height: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   transition: transform 0.1s;
   animation: fall linear forwards;
   user-select: none;
@@ -71,17 +69,12 @@ function handleClick() {
     transform 0.2s;
 }
 
-.emoji {
-  font-size: 2.5rem;
-  pointer-events: none;
-}
-
 .points-popup {
   position: absolute;
   top: -30px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 1.5rem;
+  font-size: 50px;
   font-weight: bold;
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
@@ -102,10 +95,10 @@ function handleClick() {
 
 @keyframes fall {
   from {
-    top: -100px;
+    top: -20px;
   }
   to {
-    top: 100vh;
+    top: 970px;
   }
 }
 </style>

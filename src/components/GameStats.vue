@@ -1,13 +1,10 @@
 <template>
-  <div class="game-stats">
-    <div class="stat-item score">
-      <div class="stat-label">Очки</div>
-      <div class="stat-value">{{ score }}</div>
-    </div>
-
-    <div class="stat-item timer" :class="{ urgent: timeLeft <= 10 }">
-      <div class="stat-label">Время</div>
-      <div class="stat-value">{{ formattedTime }}</div>
+  <div class="flex flex-col justify-center items-center mt-[140px]!">
+    <img src="../assets/images/logo.svg" alt="" class="mb-[41px]!" />
+    <div class="timer-back w-[586px] h-[170px] flex justify-center items-center text-center">
+      <span class="text-white font-bold text-[100px] pb-8!" :class="{ urgent: timeLeft <= 10 }">{{
+        formattedTime
+      }}</span>
     </div>
   </div>
 </template>
@@ -16,7 +13,6 @@
 import { computed } from 'vue'
 
 const props = defineProps<{
-  score: number
   timeLeft: number
 }>()
 
@@ -28,54 +24,13 @@ const formattedTime = computed(() => {
 </script>
 
 <style scoped>
-.game-stats {
-  position: absolute;
-  top: 20px;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  z-index: 100;
-  padding: 0 20px;
+.timer-back {
+  background-image: url('../assets/images/timer-back.png');
 }
-
-.stat-item {
-  background: rgba(255, 255, 255, 0.95);
-  padding: 15px 30px;
-  border-radius: 15px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  min-width: 150px;
-}
-
-.stat-label {
-  font-size: 0.9rem;
-  color: #666;
-  margin-bottom: 5px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.stat-value {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #333;
-}
-
-.score .stat-value {
-  color: #10b981;
-}
-
-.timer .stat-value {
-  color: #3b82f6;
-}
-
-.timer.urgent .stat-value {
+span.urgent {
   color: #ef4444;
   animation: pulse 1s infinite;
 }
-
 @keyframes pulse {
   0%,
   100% {

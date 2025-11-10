@@ -1,5 +1,9 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
+import coin from '../assets/images/busters/13-min.png'
+import jackpot from '../assets/images/busters/6-min.png'
+import x from '../assets/images/busters/8-min.png'
+import bomb from '../assets/images/busters/9-min.png'
 import type { GameObject, GameState } from '../types/game'
 import { ObjectType } from '../types/game'
 
@@ -25,35 +29,35 @@ export const useGameStore = defineStore('game', () => {
     objects: objects.value,
     gameEnded: gameEnded.value,
     finalScore: finalScore.value,
-    riskCoins: riskCoins.value
+    riskCoins: riskCoins.value,
   }))
 
   // Object configurations
   const objectConfigs = {
     [ObjectType.BOMB]: {
       points: -15,
-      probability: 0.2,
-      emoji: '💣',
-      color: 'bg-red-500'
+      probability: 0.35,
+      emoji: bomb,
+      color: 'bg-red-500',
     },
     [ObjectType.EMPTY]: {
       points: 0,
       probability: 0.3,
-      emoji: '❌',
-      color: 'bg-gray-400'
+      emoji: x,
+      color: 'bg-gray-400',
     },
     [ObjectType.COIN]: {
       points: 5,
-      probability: 0.4,
-      emoji: '🪙',
-      color: 'bg-yellow-400'
+      probability: 0.3,
+      emoji: coin,
+      color: 'bg-yellow-400',
     },
     [ObjectType.JACKPOT]: {
       points: 25,
-      probability: 0.1,
-      emoji: '💎',
-      color: 'bg-purple-500'
-    }
+      probability: 0.05,
+      emoji: jackpot,
+      color: 'bg-purple-500',
+    },
   }
 
   // Methods
@@ -90,19 +94,22 @@ export const useGameStore = defineStore('game', () => {
     const newObject: GameObject = {
       id: `obj-${objectIdCounter++}`,
       type,
-      x: Math.random() * 80 + 10, // 10% to 90% of screen width
+      x: Math.random() * 80 + 5, // 10% to 90% of screen width
       y: -100,
       points: config.points,
       duration: Math.random() * 2 + 3, // 3-5 seconds to fall
-      caught: false
+      caught: false,
     }
 
     objects.value.push(newObject)
 
     // Remove object after it falls
-    setTimeout(() => {
-      removeObject(newObject.id)
-    }, newObject.duration * 1000 + 100)
+    setTimeout(
+      () => {
+        removeObject(newObject.id)
+      },
+      newObject.duration * 1000 + 100,
+    )
   }
 
   function getRandomObjectType(): ObjectType {
@@ -120,7 +127,7 @@ export const useGameStore = defineStore('game', () => {
   }
 
   function catchObject(objectId: string) {
-    const object = objects.value.find(obj => obj.id === objectId)
+    const object = objects.value.find((obj) => obj.id === objectId)
 
     if (object && !object.caught) {
       object.caught = true
@@ -134,7 +141,7 @@ export const useGameStore = defineStore('game', () => {
   }
 
   function removeObject(objectId: string) {
-    const index = objects.value.findIndex(obj => obj.id === objectId)
+    const index = objects.value.findIndex((obj) => obj.id === objectId)
     if (index !== -1) {
       objects.value.splice(index, 1)
     }
@@ -159,11 +166,7 @@ export const useGameStore = defineStore('game', () => {
 
     // Calculate risk coins
     riskCoins.value = calculateRiskCoins(finalScore.value)
-
-    // Show result after a short delay for flash effect
-    setTimeout(() => {
-      gameEnded.value = true
-    }, 500)
+    gameEnded.value = true
   }
 
   function calculateRiskCoins(points: number): number {
@@ -202,6 +205,6 @@ export const useGameStore = defineStore('game', () => {
     catchObject,
     endGame,
     resetGame,
-    getObjectConfig
+    getObjectConfig,
   }
 })

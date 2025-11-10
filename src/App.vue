@@ -1,7 +1,5 @@
 <template>
-  <div id="app">
-    <GameBoard />
-  </div>
+  <GameBoard />
 </template>
 
 <script setup lang="ts">
