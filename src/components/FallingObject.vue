@@ -3,6 +3,7 @@
     :class="['falling-object', { caught: object.caught }]"
     :style="objectStyle"
     @click="handleClick"
+    @touchstart.prevent="handleTouch"
   >
     <img :src="config.emoji" alt="" />
     <div v-if="showPoints" class="points-popup">
@@ -32,13 +33,27 @@ const objectStyle = computed(() => ({
 
 function handleClick() {
   if (!props.object.caught) {
-    gameStore.catchObject(props.object.id)
-    showPoints.value = true
-
-    setTimeout(() => {
-      showPoints.value = false
-    }, 500)
+    catchObject()
   }
+}
+
+function handleTouch(event: TouchEvent) {
+  // Предотвращаем стандартное поведение и двойной вызов
+  event.preventDefault()
+  event.stopPropagation()
+
+  if (!props.object.caught) {
+    catchObject()
+  }
+}
+
+function catchObject() {
+  gameStore.catchObject(props.object.id)
+  showPoints.value = true
+
+  setTimeout(() => {
+    showPoints.value = false
+  }, 500)
 }
 </script>
 
@@ -55,6 +70,17 @@ function handleClick() {
   transition: transform 0.1s;
   animation: fall linear forwards;
   user-select: none;
+  /* Улучшение для touch устройств */
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+.falling-object img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none; /* Важно! Не блокируем клики на родителя */
 }
 
 .falling-object:active {

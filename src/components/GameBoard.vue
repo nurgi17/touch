@@ -31,7 +31,7 @@
       <div class="mb-[60px]!">
         <GameStats :timeLeft="gameStore.timeLeft" />
       </div>
-      <div class="flex flex-col justify-center items-center text-center">
+      <div class="flex flex-col justify-center items-center text-center game-container">
         <div
           class="relative w-[899px] h-[1104px] rounded-[60px] bg-linear-to-b from-[#032611] to-[#28D223] border-10 border-solid border-[#28D223]"
         >
@@ -89,6 +89,14 @@ function goToStart() {
 
 .game-board {
   position: relative;
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.game-container {
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .start-back {

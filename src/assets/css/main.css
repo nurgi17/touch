@@ -104,6 +104,19 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  /* Предотвращаем bounce эффект на iOS */
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  /* Улучшение производительности на мобильных */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 #app {
   width: 1080px;
   height: 1920px;
