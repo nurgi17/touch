@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col justify-center items-center mt-[140px]!">
+  <div class="flex flex-col justify-center items-center pt-[140px]!">
     <img src="../assets/images/logo.svg" alt="" class="mb-[41px]!" />
     <div class="timer-back w-[586px] h-[170px] flex justify-center items-center text-center">
       <span class="text-white font-bold text-[100px] pb-8!" :class="{ urgent: timeLeft <= 10 }">{{

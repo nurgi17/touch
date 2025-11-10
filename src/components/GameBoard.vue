@@ -1,6 +1,6 @@
 <template>
   <div
-    class="game-board"
+    class="game-board w-[1080px] h-[1920px] max-w-[1080px] max-h-[1920px]"
     :class="{
       'start-back': !gameStore.isPlaying && !gameStore.gameEnded,
       'main-back': gameStore.isPlaying || gameStore.gameEnded,
@@ -88,10 +88,7 @@ function goToStart() {
 }
 
 .game-board {
-  width: 100%;
-  height: 100vh;
   position: relative;
-  overflow: hidden;
 }
 
 .start-back {

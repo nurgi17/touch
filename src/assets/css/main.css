@@ -104,10 +104,6 @@
   box-sizing: border-box;
 }
 
-body {
-  overflow: hidden;
-}
-
 #app {
   width: 1080px;
   height: 1920px;
