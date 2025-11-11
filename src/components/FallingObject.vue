@@ -5,7 +5,14 @@
     @click="handleClick"
     @touchstart.prevent="handleTouch"
   >
-    <img :src="config.emoji" alt="" />
+    <img
+      :src="config.emoji"
+      alt=""
+      :class="{
+        'border-4 border-red-600 shadow-[0_0_25px_8px_rgba(255,0,0,0.8)] rounded-full':
+          object.type === ObjectType.BOMB || object.type === ObjectType.BOMB2,
+      }"
+    />
     <div v-if="showPoints" class="points-popup">
       {{ object.points > 0 ? '+' : '' }}{{ object.points }}
     </div>
@@ -15,7 +22,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useGameStore } from '../stores/gameStore'
-import type { GameObject } from '../types/game'
+import { type GameObject, ObjectType } from '../types/game'
 
 const props = defineProps<{
   object: GameObject

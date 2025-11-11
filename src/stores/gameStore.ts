@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
+import bomb2 from '../assets/images/busters/1-min.png'
 import leaflet from '../assets/images/busters/10-min.png'
 import coin from '../assets/images/busters/13-min.png'
 import gira from '../assets/images/busters/2-min.png'
@@ -39,45 +40,51 @@ export const useGameStore = defineStore('game', () => {
   const objectConfigs = {
     [ObjectType.BOMB]: {
       points: -15,
-      probability: 0.3,
+      probability: 0.25,
       emoji: bomb,
       color: 'bg-red-500',
     },
+    [ObjectType.BOMB2]: {
+      points: -15,
+      probability: 0.25,
+      emoji: bomb2,
+      color: 'bg-red-500',
+    },
+    [ObjectType.LEAFLET]: {
+      points: 1,
+      probability: 0.17,
+      emoji: leaflet,
+      color: 'bg-green-500',
+    },
     [ObjectType.EMPTY]: {
-      points: 0,
-      probability: 0.2,
+      points: 2,
+      probability: 0.15,
       emoji: x,
       color: 'bg-gray-400',
     },
+    [ObjectType.FLOWER]: {
+      points: 3,
+      probability: 0.07,
+      emoji: flower,
+      color: 'bg-pink-500',
+    },
+    [ObjectType.GIRA]: {
+      points: 4,
+      probability: 0.05,
+      emoji: gira,
+      color: 'bg-blue-500',
+    },
     [ObjectType.COIN]: {
       points: 5,
-      probability: 0.1,
+      probability: 0.05,
       emoji: coin,
       color: 'bg-yellow-400',
     },
     [ObjectType.JACKPOT]: {
       points: 25,
-      probability: 0.02,
+      probability: 0.01,
       emoji: jackpot,
       color: 'bg-purple-500',
-    },
-    [ObjectType.LEAFLET]: {
-      points: 0,
-      probability: 0.1,
-      emoji: leaflet,
-      color: 'bg-green-500',
-    },
-    [ObjectType.FLOWER]: {
-      points: 5,
-      probability: 0.1,
-      emoji: flower,
-      color: 'bg-pink-500',
-    },
-    [ObjectType.GIRA]: {
-      points: -25,
-      probability: 0.18,
-      emoji: gira,
-      color: 'bg-blue-500',
     },
   }
 

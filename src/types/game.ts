@@ -1,5 +1,6 @@
 export enum ObjectType {
   BOMB = 'BOMB',
+  BOMB2 = 'BOMB2',
   GIRA = 'GIRA',
   EMPTY = 'EMPTY',
   FLOWER = 'FLOWER',
