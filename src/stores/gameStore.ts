@@ -1,7 +1,10 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
+import leaflet from '../assets/images/busters/10-min.png'
 import coin from '../assets/images/busters/13-min.png'
+import gira from '../assets/images/busters/2-min.png'
 import jackpot from '../assets/images/busters/6-min.png'
+import flower from '../assets/images/busters/7-min.png'
 import x from '../assets/images/busters/8-min.png'
 import bomb from '../assets/images/busters/9-min.png'
 import type { GameObject, GameState } from '../types/game'
@@ -36,27 +39,45 @@ export const useGameStore = defineStore('game', () => {
   const objectConfigs = {
     [ObjectType.BOMB]: {
       points: -15,
-      probability: 0.35,
+      probability: 0.3,
       emoji: bomb,
       color: 'bg-red-500',
     },
     [ObjectType.EMPTY]: {
       points: 0,
-      probability: 0.3,
+      probability: 0.2,
       emoji: x,
       color: 'bg-gray-400',
     },
     [ObjectType.COIN]: {
       points: 5,
-      probability: 0.3,
+      probability: 0.1,
       emoji: coin,
       color: 'bg-yellow-400',
     },
     [ObjectType.JACKPOT]: {
       points: 25,
-      probability: 0.05,
+      probability: 0.02,
       emoji: jackpot,
       color: 'bg-purple-500',
+    },
+    [ObjectType.LEAFLET]: {
+      points: 0,
+      probability: 0.1,
+      emoji: leaflet,
+      color: 'bg-green-500',
+    },
+    [ObjectType.FLOWER]: {
+      points: 5,
+      probability: 0.1,
+      emoji: flower,
+      color: 'bg-pink-500',
+    },
+    [ObjectType.GIRA]: {
+      points: -25,
+      probability: 0.18,
+      emoji: gira,
+      color: 'bg-blue-500',
     },
   }
 
@@ -82,7 +103,7 @@ export const useGameStore = defineStore('game', () => {
     // Start object spawner
     objectSpawner = window.setInterval(() => {
       spawnObject()
-    }, 800) // Spawn object every 800ms
+    }, 400) // Spawn object every 800ms
   }
 
   function spawnObject() {
@@ -97,7 +118,7 @@ export const useGameStore = defineStore('game', () => {
       x: Math.random() * 80 + 5, // 10% to 90% of screen width
       y: -100,
       points: config.points,
-      duration: Math.random() * 2 + 3, // 3-5 seconds to fall
+      duration: Math.random() * 1 + 1, // 1-2 seconds to fall
       caught: false,
     }
 

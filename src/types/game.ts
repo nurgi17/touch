@@ -1,8 +1,11 @@
 export enum ObjectType {
   BOMB = 'BOMB',
+  GIRA = 'GIRA',
   EMPTY = 'EMPTY',
+  FLOWER = 'FLOWER',
+  LEAFLET = 'LEAFLET',
   COIN = 'COIN',
-  JACKPOT = 'JACKPOT'
+  JACKPOT = 'JACKPOT',
 }
 
 export interface GameObject {
