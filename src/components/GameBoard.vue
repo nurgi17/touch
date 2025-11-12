@@ -20,7 +20,8 @@
       </div>
       <button
         @click="startGame"
-        class="uppercase text-[96px] text-white font-bold pb-5! px-33.5! rounded-[10000px] bg-linear-to-tr from-[#063F06] to-[#28D223] border-10 border-solid border-[#28D223] mt-[346px]!"
+        @touchstart.prevent="startGame"
+        class="cursor-pointer touch-manipulation relative z-10 uppercase text-[96px] text-white font-bold pb-5! px-33.5! rounded-[10000px] bg-linear-to-tr from-[#063F06] to-[#28D223] border-10 border-solid border-[#28D223] mt-[346px]!"
       >
         {{ $t('startGame') }}
       </button>
