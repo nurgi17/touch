@@ -131,7 +131,7 @@ function catchObject() {
     top: -20px;
   }
   to {
-    top: 970px;
+    top: 730px;
   }
 }
 </style>

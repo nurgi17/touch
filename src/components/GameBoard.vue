@@ -1,6 +1,6 @@
 <template>
   <div
-    class="game-board w-[1080px] h-[1920px] max-w-[1080px] max-h-[1920px]"
+    class="game-board w-[2560px] h-[1440px] max-w-[2560px] max-h-[1440px]"
     :class="{
       'start-back': !gameStore.isPlaying && !gameStore.gameEnded,
       'main-back': gameStore.isPlaying || gameStore.gameEnded,
@@ -11,7 +11,7 @@
       v-if="!gameStore.isPlaying && !gameStore.gameEnded"
       class="flex flex-col justify-center items-center text-center"
     >
-      <div class="flex flex-col justify-center items-center mt-[741px]!">
+      <div class="flex flex-col justify-center items-center mt-[341px]!">
         <img src="../assets/images/logo.svg" alt="logo" class="mb-14!" />
         <h1 class="font-bold text-[150px] text-white leading-40">{{ $t('touch') }}</h1>
         <h1 class="font-bold text-[150px] text-white leading-40 second-font">
@@ -21,7 +21,7 @@
       <button
         @click="startGame"
         @touchstart.prevent="startGame"
-        class="cursor-pointer touch-manipulation relative z-10 uppercase text-[96px] text-white font-bold pb-5! px-33.5! rounded-[10000px] bg-linear-to-tr from-[#063F06] to-[#28D223] border-10 border-solid border-[#28D223] mt-[346px]!"
+        class="cursor-pointer touch-manipulation relative z-10 uppercase text-[96px] text-white font-bold pb-5! px-33.5! rounded-[10000px] bg-linear-to-tr from-[#063F06] to-[#28D223] border-10 border-solid border-[#28D223] mt-30!"
       >
         {{ $t('startGame') }}
       </button>
@@ -29,12 +29,12 @@
 
     <!-- Game Area -->
     <div v-if="gameStore.isPlaying" class="game-area">
-      <div class="mb-[60px]!">
+      <div class="mb-[40px]!">
         <GameStats :timeLeft="gameStore.timeLeft" />
       </div>
       <div class="flex flex-col justify-center items-center text-center game-container">
         <div
-          class="relative w-[899px] h-[1104px] rounded-[60px] bg-linear-to-b from-[#032611] to-[#28D223] border-10 border-solid border-[#28D223]"
+          class="relative w-[1400px] h-[900px] rounded-[60px] bg-linear-to-b from-[#032611] to-[#28D223] border-10 border-solid border-[#28D223]"
         >
           <FallingObject v-for="object in gameStore.objects" :key="object.id" :object="object" />
         </div>
@@ -42,9 +42,9 @@
 
       <div class="flex flex-col justify-center items-center text-center">
         <div
-          class="bg-[#032611] rounded-[40px] border-8 border-solid border-[#28D223] mt-[60px]! w-[899px]"
+          class="bg-[#032611] rounded-[40px] border-8 border-solid border-[#28D223] mt-[40px]! w-[1400px] h-[100px]! relative"
         >
-          <span class="font-bold text-white text-[100px]">
+          <span class="font-bold text-white text-[88px] absolute top-[-39px] left-[47%]">
             {{ gameStore.score }}
           </span>
         </div>
