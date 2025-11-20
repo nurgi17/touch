@@ -110,7 +110,7 @@ export const useGameStore = defineStore('game', () => {
     // Start object spawner
     objectSpawner = window.setInterval(() => {
       spawnObject()
-    }, 400) // Spawn object every 800ms
+    }, 400) // Spawn object every 400ms
   }
 
   function spawnObject() {
@@ -125,7 +125,7 @@ export const useGameStore = defineStore('game', () => {
       x: Math.random() * 80 + 5, // 10% to 90% of screen width
       y: -100,
       points: config.points,
-      duration: Math.random() * 1 + 1, // 1-2 seconds to fall
+      duration: Math.random() * (0.7 - 0.65) + 0.65,
       caught: false,
     }
 
