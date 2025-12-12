@@ -125,7 +125,7 @@ export const useGameStore = defineStore('game', () => {
       x: Math.random() * 80 + 5, // 10% to 90% of screen width
       y: -100,
       points: config.points,
-      duration: Math.random() * 1 + 1, // 1-2 seconds to fall
+      duration: Math.random() * 0.3 + 0.6, // 0.7–1.0 seconds
       caught: false,
     }
 
